@@ -6,7 +6,6 @@ import Login from "../container/Login/Index";
 import LaginLayout from "../Layout/LoginLayout";
 import LogContainer from "../container/RegisterContainer/Index.jsx";
 import ResponsiveAppBar from "../container/NavBar/Index";
-import { ThemeProvider } from "@emotion/react";
 import Home from "../container/HomePage/Index";
 
 export default function Links() {
