@@ -18,135 +18,84 @@ import HomeSilder6 from "./Images/home6.webp";
 import HomePageCon1 from "./Images/sadi.avif";
 import HomePageCon2 from "./Images/mens ware.avif";
 import HomePageCon3 from "./Images/western.avif";
-
+import HomePageCon6 from "./Images/kids wear.avif";
 import HomePageCon4 from "./Images/footware.avif";
-
 import HomePageCon5 from "./Images/beauty.avif";
+import menswear1 from "./Images/menswear1.avif";
+import menswear2 from "./Images/menswear2.avif";
+import menswear3 from "./Images/menswear3.avif";
+import menswear4 from "./Images/menswear4.avif";
+import Womenwear1 from "./Images/womenwear1.avif";
+import Womenwear2 from "./Images/womenwear2.avif";
+import Womenwear3 from "./Images/womenwear3.avif";
+import Womenwear4 from "./Images/womenwear5.avif";
+import kidswear1 from "./Images/kidswear1.avif";
+import kidswear2 from "./Images/kidswear2.avif";
+import kidswear3 from "./Images/kidswear3.avif";
+import kidswear4 from "./Images/kidswear5.avif";
+import footwear1 from "./Images/footwear1.avif";
+import footwear2 from "./Images/footwear2.avif";
+import footwear3 from "./Images/footwear3.avif";
+import footwear4 from "./Images/footwear4.avif";
+import Homeappliance1 from "./Images/homeapplience1.avif";
+import Homeappliance2 from "./Images/homeapplience2.avif";
+import Homeappliance3 from "./Images/homeapplience3.avif";
+import Homeappliance4 from "./Images/homeapplience4.avif";
+import cosmatics1 from "./Images/cosmatics1.avif";
+import cosmatics2 from "./Images/cosmatics2.avif";
+import cosmatics3 from "./Images/cosmatics3.avif";
+import cosmatics4 from "./Images/cosmatics4.avif";
 
-const icon = [
-  {
-    id: 0,
-    label: "Men's Colths",
-    image: `${icon1}`,
-  },
-  {
-    id: 1,
-    label: "Womans Colths",
-    image: `${icon2}`,
-  },
-  {
-    id: 2,
-    label: "Kids Colths",
-    image: `${icon3}`,
-  },
-  {
-    id: 3,
-    label: "Home Appliance",
-    image: `${icon4}`,
-  },
-  {
-    id: 4,
-    label: "FootWare",
-    image: `${icon5}`,
-  },
-  {
-    id: 5,
-    label: "Jewelary",
-    image: `${icon6}`,
-  },
-];
+const SIDEBARICONS = {
+  NavbarIcon1: icon1,
+  NavbarIcon2: icon2,
+  NavbarIcon3: icon3,
+  NavbarIcon4: icon4,
+  NavbarIcon5: icon5,
+  NavbarIcon6: icon6,
+  NavbarIcon7: icon7,
+  NavbarIcon8: icon8,
+  NavbarIcon9: icon9,
+  NavbarIcon10: icon10,
+  NavbarIcon11: icon11,
+};
 
-const iconSidebar2 = [
-  {
-    id: 0,
-    label: "Best Seller",
-    image: `${icon9}`,
-  },
-  {
-    id: 1,
-    label: "New Relese",
-    image: `${icon10}`,
-  },
-  {
-    id: 1,
-    label: "Offers",
-    image: `${icon11}`,
-  },
-];
+const HOMEPAGEIMAGE = {
+  HomePageSlider1: HomeSilder1,
+  HomePageSlider2: HomeSilder2,
+  HomePageSlider3: HomeSilder3,
+  HomePageSlider4: HomeSilder4,
+  HomePageSlider5: HomeSilder5,
+  HomePageSlider6: HomeSilder6,
+  DealOfDayPage1: HomePageCon1,
+  DealOfDayPage2: HomePageCon2,
+  DealOfDayPage3: HomePageCon3,
+  DealOfDayPage4: HomePageCon4,
+  DealOfDayPage5: HomePageCon5,
+  DealOfDayPage6: HomePageCon6,
+};
 
-const iconSidebar = [
-  {
-    id: 0,
-    label: "Cutomer Care",
-    image: `${icon7}`,
-  },
-  {
-    id: 1,
-    label: "Profile",
-    image: `${icon8}`,
-  },
-];
+const ProductListImage = {
+  menswear1,
+  menswear2,
+  menswear3,
+  menswear4,
+  Womenwear1,
+  Womenwear2,
+  Womenwear3,
+  Womenwear4,
+  kidswear1,
+  kidswear2,
+  kidswear3,
+  kidswear4,
+  footwear1,
+  footwear2,
+  footwear3,
+  footwear4,
+  Homeappliance1,
+  Homeappliance2,Homeappliance3,
+  Homeappliance4,cosmatics1,cosmatics2,cosmatics3,cosmatics4
 
-const HomeSliderImages = [
-  {
-    id: 0,
-    image: `${HomeSilder1}`,
-  },
-  {
-    id: 0,
-    image: `${HomeSilder2}`,
-  },
-  {
-    id: 0,
-    image: `${HomeSilder3}`,
-  },
-  {
-    id: 0,
-    image: `${HomeSilder4}`,
-  },
-  {
-    id: 0,
-    image: `${HomeSilder5}`,
-  },
-];
+};
 
-const CardDataHome = [
-  {
-    id: 0,
-    label:
-      " Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    image: `${HomePageCon1}`,
-  },
-  {
-    id: 2,
-    label:
-      " Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    image: `${HomePageCon2}`,
-  },
-  {
-    id: 3,
-    label:
-      " Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    image: `${HomePageCon3}`,
-  },
-  {
-    id: 4,
-    label:
-      " Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    image: `${HomePageCon4}`,
-  },
-  {
-    id: 4,
-    label:
-      " Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    image: `${HomePageCon5}`,
-  },
-  {
-    id: 4,
-    label:
-      " Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica",
-    image: `${HomePageCon1}`,
-  },
-];
-
-export { iconSidebar, iconSidebar2, icon, HomeSliderImages, CardDataHome };
+export { SIDEBARICONS, HOMEPAGEIMAGE, ProductListImage };

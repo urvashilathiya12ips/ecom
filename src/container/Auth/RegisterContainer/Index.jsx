@@ -1,9 +1,9 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { ThemeProvider } from '@emotion/react';
-import {theme } from '../../theme/Index.js'
+import {theme } from '../../../utils/theme/Index'
 
 
 export default function LogContainer() {
@@ -17,11 +17,13 @@ export default function LogContainer() {
       password: data.get("password"),
     });
   };
+
+  
   return (
     <>  
  
     <ThemeProvider theme={theme}>
-        <AccountCircleIcon color="secondary"  sx={{ fontSize:"60px"}}/>
+    <AccountCircleIcon color="secondary"  sx={{ fontSize:"60px"}}/>
   <Typography variant="h4">REGISTER HERE!</Typography>
   <Typography variant="subtitle1" gutterBottom>
     Welcome To E-commarce

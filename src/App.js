@@ -8,7 +8,7 @@ function App() {
   const [open, setOpen] = React.useState(false);
   return (
     <>
-      <UserContext.Provider value={{ open, setOpen }}>
+      <UserContext.Provider value={{ open, setOpen }}>  
         <Links />
       </UserContext.Provider>
     </>

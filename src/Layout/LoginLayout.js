@@ -1,7 +1,6 @@
 import { Box, Card, CardMedia, Container } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import background from "../assets/Images/bgimg.avif";
 import loginBg from "../assets/Images/loginPage.svg";
 
 export default function LaginLayout() {
@@ -37,6 +36,7 @@ export default function LaginLayout() {
                 component="img"
                 alt="green iguana"
                 height="500px"
+                sx={{ display: { xs: "none", md: "block" } }}
                 image={loginBg}
               />
             </Card>

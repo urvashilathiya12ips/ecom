@@ -9,4 +9,4 @@ export const theme = createTheme({
       main: "#304ffe",
     },
   },
-});
+})
