@@ -98,7 +98,6 @@ export default function Cart({image,label,price,size,id}) {
               >
                 {label}
               </Typography>
-
               <Typography variant="body2" color="text.secondary">
                RS: {price}
               </Typography>

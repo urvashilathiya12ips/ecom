@@ -5,6 +5,7 @@ import { theme } from "../utils/theme/Index";
 import ResponsiveDrawer from "../container/App/NavBar/Index";
 import { Box, Toolbar, Typography } from "@mui/material";
 import { drawerWidth } from "../utils/Constant";
+import Footer from "../container/App/Footer/Index";
 
 export default function MainLayout() {
   const [url, SetUrl] = useState(window.location.pathname);
@@ -47,6 +48,7 @@ export default function MainLayout() {
 
           <Outlet />
         </Box>
+        <Footer />
       </ThemeProvider>
     </>
   );

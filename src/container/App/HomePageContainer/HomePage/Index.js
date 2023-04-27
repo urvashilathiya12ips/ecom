@@ -2,13 +2,13 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
-import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from "react-swipeable-views-utils";
+// import SwipeableViews from "react-swipeable-views";
+// import { autoPlay } from "react-swipeable-views-utils";
 import { HomeSliderImages } from "../../../../utils/Constant";
 import HomePageCon1 from "../DealOfTheDay/Index";
 import CategoryToBag from "../CategoryToBag/Index";
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 function Home() {
   const theme = useTheme();
@@ -30,7 +30,7 @@ function Home() {
   return (
     <>
       <Box display="inline-block" mt="10px">
-        <AutoPlaySwipeableViews
+        {/* <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
           index={activeStep}
           onChangeIndex={handleStepChange}
@@ -52,7 +52,7 @@ function Home() {
               ) : null}
             </div>
           ))}
-        </AutoPlaySwipeableViews>
+        </AutoPlaySwipeableViews> */}
 
         <MobileStepper
           sx={{ justifyContent: "center" }}

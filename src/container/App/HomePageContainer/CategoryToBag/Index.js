@@ -1,9 +1,10 @@
 import React from "react";
 import Cart from "../../../../Wigets/Cart";
-import { Avatar, Box, Paper, Typography } from "@mui/material";
+import { Avatar, Box, CardContent, Paper, Typography } from "@mui/material";
 import { ProductListData } from "../../../../utils/Constant";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../../../utils/theme/Index";
+import { CustomizedBox } from "../../../../components/CustomiseBox/Index";
 
 export default function CategoryToBag() {
   return (
@@ -20,14 +21,14 @@ export default function CategoryToBag() {
             CATEGORIES TO BAG
           </Typography>
           <Box
-              sx={{
-                display: "flex",
+            sx={{
+              display: "flex",
 
-                justifyContent: "space-evenly",
-                alignContent: "center",
-                backgroundColor: "#F1F1F1",
-                flexWrap: "wrap",
-              }}
+              justifyContent: "space-evenly",
+              alignContent: "center",
+              backgroundColor: "#F1F1F1",
+              flexWrap: "wrap",
+            }}
           >
             {ProductListData.map((Products, index) => (
               <Box
