@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React from "react";
 import LaginLayout from "../Layout/LoginLayout";
 import Login from "../container/Auth/Login/Index";
@@ -49,7 +49,7 @@ export default function Links() {
           <Route
             path="/bestseller"
             element={<CategarySidebar2 type="bestseller" />}
-          />  
+          />
           <Route path="/AddToCart" element={<AddTOCArt />} />
           <Route path="/offer" element={<CategarySidebar2 type="offer" />} />
           <Route path="/Userprofile" element={<Userprofile />} />

@@ -1,6 +1,5 @@
 import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
-import Logo from "../../../../assets/Images/mens ware.avif";
 import * as React from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
@@ -14,12 +13,12 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function CategarySidebar2({ type }) {
-  const [product, setProduct] = React.useState([]);
+  // const [product, setProduct] = React.useState([]);
 
-  React.useEffect(() => {
-    setProduct(ProductListData);
-    localStorage.setItem("Products", JSON.stringify(product));
-  });
+  // React.useEffect(() => {
+  //   setProduct(ProductListData);
+  //   localStorage.setItem("Products", JSON.stringify(product));
+  // });
 
   return (
     <>

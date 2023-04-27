@@ -3,7 +3,6 @@ import {
   iconSidebar,
   iconSidebar2,
   drawerWidth,
-  ProductListData,
 } from "../../../utils/Constant";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import * as React from "react";
@@ -22,20 +21,11 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import {
-  Avatar,
-  Badge,
-  Grid,
-  Input,
-  InputBase,
-  Paper,
-  alpha,
-} from "@mui/material";
+import { Avatar, Badge, Input, InputBase, alpha } from "@mui/material";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/Images/applogo2-removebg-preview.png";
-import { UserContext } from "../../../App";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -78,42 +68,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-const Item = styled(Paper)(({ theme }) => ({
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+// const Item = styled(Paper)(({ theme }) => ({
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
 function ResponsiveDrawer(props) {
-  const { log, setlog } = React.useContext(UserContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [state, setState] = React.useState({
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  const list = (anchor) => (
-    <Box
-      sx={{
-        width:
-          anchor === "top" || anchor === "bottom"
-            ? "auto"
-            : { xs: 250, sm: 350 },
-      }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    ></Box>
-  );
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);

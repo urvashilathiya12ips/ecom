@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
+import React, { useState, createContext } from "react";
 import "./App.css";
-import React, { useState, createContext, useEffect } from "react";
 import Links from "./Routes/Index";
 import { ProductListData } from "./utils/Constant";
 

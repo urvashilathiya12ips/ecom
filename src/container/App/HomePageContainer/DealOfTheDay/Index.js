@@ -1,12 +1,5 @@
-import {
-  Box,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import React, { useRef, useState } from "react";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css";

@@ -9,7 +9,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { theme } from "../../../../utils/theme/Index";
 import PropTypes from "prop-types";
 import { SIDEBARICONS } from "../../../../assets/Image";

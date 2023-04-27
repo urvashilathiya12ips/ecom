@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MobileStepper from "@mui/material/MobileStepper";
 // import SwipeableViews from "react-swipeable-views";
@@ -11,21 +10,20 @@ import CategoryToBag from "../CategoryToBag/Index";
 // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 function Home() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
+  // const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = HomeSliderImages.length;
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
+  // const handleNext = () => {
+  //   setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  // };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+  // const handleBack = () => {
+  //   setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  // };
 
-  const handleStepChange = (step) => {
-    setActiveStep(step);
-  };
+  // const handleStepChange = (step) => {
+  //   setActiveStep(step);
+  // };
 
   return (
     <>
@@ -58,7 +56,7 @@ function Home() {
           sx={{ justifyContent: "center" }}
           steps={maxSteps}
           position="static"
-          activeStep={activeStep}
+          activeStep={0}
         />
       </Box>
       <Box>

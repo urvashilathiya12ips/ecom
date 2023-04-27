@@ -10,8 +10,6 @@ import {
   Paper,
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import styled from "@emotion/styled";
-import { ProductListData } from "../utils/Constant";
 import { CustomizedBox } from "../components/CustomiseBox/Index";
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import Dialog from '@mui/material/Dialog';
@@ -27,9 +25,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 export default function Cart({image,label,price,size,id}) {
-  const [open, setOpen] = React.useState(false);
   const [flag, setFlag] = React.useState(false);
-  const [addCart, setAddCart] = React.useState([]);
   const [Dailogopen, setDailogopen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -63,15 +59,14 @@ export default function Cart({image,label,price,size,id}) {
    
   };
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: "center",
+  //   color: theme.palette.text.secondary,
+  // }));
 
-  const Div = styled("div", {});
   return (
     <>
       <Paper sx={{ position: "relative" }}>
