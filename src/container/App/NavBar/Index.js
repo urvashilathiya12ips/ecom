@@ -21,11 +21,11 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { Avatar, Badge, Input, InputBase, alpha } from "@mui/material";
+import { Avatar, Badge, Input, InputBase, Link, alpha } from "@mui/material";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
-import { NavLink } from "react-router-dom";
 import logo from "../../../assets/Images/applogo2-removebg-preview.png";
+import { useNavigate } from "react-router-dom/dist";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -73,6 +73,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 //   color: theme.palette.text.secondary,
 // }));
 function ResponsiveDrawer(props) {
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -93,7 +94,7 @@ function ResponsiveDrawer(props) {
       <List>
         {icon.map((text, index) => (
           <ListItem key={text.label} disablePadding>
-            <ListItemButton components={NavLink} to={text.to}>
+            <ListItemButton onClick={() => navigate(text.to)}>
               <ListItemIcon>
                 <Avatar src={text.image} />
               </ListItemIcon>
@@ -106,7 +107,7 @@ function ResponsiveDrawer(props) {
       <List>
         {iconSidebar2.map((text, index) => (
           <ListItem key={text.label} disablePadding>
-            <ListItemButton components={NavLink} to={text.to}>
+            <ListItemButton onClick={() => navigate(text.to)}>
               <ListItemIcon>
                 <Avatar src={text.image} />
               </ListItemIcon>
@@ -119,7 +120,7 @@ function ResponsiveDrawer(props) {
       <List>
         {iconSidebar.map((text, index) => (
           <ListItem key={text.label} disablePadding>
-            <ListItemButton components={NavLink} to={text.to}>
+            <ListItemButton onClick={() => navigate(text.to)}>
               <ListItemIcon>
                 <Avatar src={text.image} />
               </ListItemIcon>
@@ -181,12 +182,12 @@ function ResponsiveDrawer(props) {
               badgeContent={4}
               color="error"
               sx={{ justifyContent: "flex-end", color: "#ffffff" }}
-              component={NavLink}
+              component={Link}
               to="/AddToCart"
             >
               <ShoppingCartRoundedIcon />
             </Badge>
-            <Box component={NavLink} to="/" sx={{ color: "#ffffff" }}>
+            <Box component={Link} to="/" sx={{ color: "#ffffff" }}>
               <ExitToAppIcon sx={{ fontSize: "30px" }} />
             </Box>
           </Box>

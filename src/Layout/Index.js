@@ -6,14 +6,19 @@ import ResponsiveDrawer from "../container/App/NavBar/Index";
 import { Box, Toolbar, Typography } from "@mui/material";
 import { drawerWidth } from "../utils/Constant";
 import Footer from "../container/App/Footer/Index";
+import { useLocation } from "react-router-dom/dist";
 
 export default function MainLayout() {
-  const [url, SetUrl] = useState(window.location.pathname);
+  const location = useLocation();
 
+  // useEffect(() => {
+
+  //   SetUrl(window.location.pathname);
+  //   console.log(url);
+  // }, [url]);
   useEffect(() => {
-    SetUrl(window.location.pathname);
-    console.log(url);
-  }, [url]);
+    console.log(location);
+  }, [location]);
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -28,7 +33,7 @@ export default function MainLayout() {
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
-          {url === "/home" ? (
+          {location === "/home" ? (
             " "
           ) : (
             <Box sx={{ display: "flex" }}>
@@ -41,14 +46,13 @@ export default function MainLayout() {
                 Home
               </Typography>
               <Typography variant="body1" gutterBottom>
-                {`${url}`}
+                {/* {`${url}`} */}
               </Typography>
             </Box>
           )}
 
           <Outlet />
         </Box>
-        <Footer />
       </ThemeProvider>
     </>
   );
