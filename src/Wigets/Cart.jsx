@@ -3,31 +3,64 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
   Avatar,
   Box,
   Button,
-  CardActionArea,
   Paper,
-  Tooltip,
 } from "@mui/material";
-import Logo from "../assets/Images/mens ware.avif";
-import { Grid } from "swiper";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styled from "@emotion/styled";
-import  { ProductListData } from "../utils/Constant";
+import { ProductListData } from "../utils/Constant";
 import { CustomizedBox } from "../components/CustomiseBox/Index";
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
-export default function Cart({image, label,price,size}) {
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+
+export default function Cart({image,label,price,size,id}) {
   const [open, setOpen] = React.useState(false);
+  const [flag, setFlag] = React.useState(false);
+  const [addCart, setAddCart] = React.useState([]);
+  const [Dailogopen, setDailogopen] = React.useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleClickOpen = () => {
+    setDailogopen(true);
   };
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleClose = () => {
+    setDailogopen(false);
+  };
+
+  
+
+  const handleClick = (id) => {
+    setFlag(!flag);
+    // ProductListData.map((product,index)=>{
+    //   console.log(id)
+    //   if(product.id === id){
+    //     setAddCart([...addCart,product]);
+    //   }
+    // })
+    // console.log(addCart)
+  };
+
+  const Remove = (data) => {
+    setFlag(!flag)
+    // var Deleteitem =addCart.filter((item) => {
+    //   return item.id !== data.id;
+    // });
+    // setAddCart(Deleteitem);
+    // console.log(addCart)
+   
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -42,14 +75,14 @@ export default function Cart({image, label,price,size}) {
   return (
     <>
       <Paper sx={{ position: "relative" }}>
-        <Card >
+        <Card onClick={handleClickOpen} >
           <CardMedia
             component="img"
             alt="green iguana"
             height="350"
             image={image}
           />
-          <CardContent sx={{display:"flex",justifyContent:"space-between",alignContent:"center"}}>
+          <CardContent sx={{textAlign:"start"}}>
             <Box>
               <Typography
                 gutterBottom
@@ -70,11 +103,7 @@ export default function Cart({image, label,price,size}) {
                RS: {price}
               </Typography>
             </Box>
-            <Box>
-              <Avatar>
-                <ShoppingCartIcon />
-              </Avatar>
-            </Box>
+           
           </CardContent>
         </Card>
 
@@ -85,16 +114,32 @@ export default function Cart({image, label,price,size}) {
                 textAlign: "start",
               }}
             >
+              { flag === false ? 
               <Box sx={{ paddingBottom: "5px" }}>
                 <Button
                   fullWidth
                   variant="contained"
+                  onClick={()=>handleClick(id)}
                   size="large"
-                  startIcon={<FavoriteBorderIcon />}
+                  startIcon={ <ShoppingCartIcon/>}
                 >
-                  wishlist
+                  ADD BAG
                 </Button>
               </Box>
+              :
+              <Box sx={{ paddingBottom: "5px" }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                   onClick={(e)=>Remove(id)}
+                  size="large"  
+                  startIcon={ <RemoveShoppingCartIcon/>}
+                >
+                  Remove BAG
+                </Button>
+              </Box>
+            }
               <Box>
                 <Typography color="primary" variant="subtitle1">
                   Sizes: {size}
@@ -106,6 +151,55 @@ export default function Cart({image, label,price,size}) {
             </CardContent>
           </Box>
         </CustomizedBox>
+
+        <Dialog
+        open={Dailogopen}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle><Avatar variant="square" sx={{width:{xs:"200px",sm:"300px",lg:"400px"},height:{xs:"200px",sm:"300px",lg:"400px"}}} src={image}></Avatar></DialogTitle>
+        <DialogTitle>{label}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+          <Typography color="primary" variant="subtitle1">
+                  Sizes: {size}
+          </Typography>
+          <Typography color="primary" variant="subtitle1">
+                RS. {price}
+          </Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+        { flag === false ? 
+              <Box sx={{ paddingBottom: "5px" }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  onClick={()=>handleClick(id)}
+                  size="large"
+                  startIcon={ <ShoppingCartIcon/>}
+                >
+                  ADD BAG
+                </Button>
+              </Box>
+              :
+              <Box sx={{ paddingBottom: "5px" }}>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  color="secondary"
+                   onClick={(e)=>Remove(id)}
+                  size="large"  
+                  startIcon={ <RemoveShoppingCartIcon/>}
+                >
+                  Remove BAG
+                </Button>
+              </Box>
+            }
+        </DialogActions>
+      </Dialog>
       </Paper>
     </>
   );

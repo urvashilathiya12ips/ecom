@@ -43,6 +43,7 @@ function Home() {
                   component="img"
                   sx={{
                     display: "block",
+                    height: { xs: "200px", md: "300px", lg: "400px" },
                     overflow: "hidden",
                     width: "100%",
                   }}

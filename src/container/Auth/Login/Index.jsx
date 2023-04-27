@@ -21,13 +21,17 @@ import {
 
 } from "@mui/material";
 import MuiAlert from '@mui/material/Alert';
+import { UserContext } from "../../../App";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+
+
 export default function Login() {
+  const { log,setlog } =React.useContext(UserContext);
   const [showPassword, setShowPassword] = React.useState(false);
   const [Error, setError] = React.useState({
       emailError:false,
@@ -37,17 +41,13 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [log,setlog]=useState(false);
   const [snackbarShow, setsnackbarShow] = React.useState(false);
   const [transition, setTransition] = React.useState(undefined);
 
   const handleClick = (Transition) => () => {
     setTransition(() => Transition);
-    if(log === true){
       setsnackbarShow(true);
-    }else{
-      setsnackbarShow(true);
-    }
+   
   };
 
   const handleClose = () => {
@@ -97,9 +97,9 @@ export default function Login() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AccountCircleIcon color="secondary" sx={{ fontSize: "60px" }} />
+        <AccountCircleIcon  sx={{ fontSize: "60px" }} />
         <Typography sx={{fontSize:{sm:"15px",md:"20px",lg:"30px"}}}>LET'S GET STARTED NOW!</Typography>
-        <Typography sx={{fontSize:{sm:"10px",md:"15px",lg:"20px"}}}  gutterBottom>
+        <Typography sx={{fontSize:{sm:"10px",md:"15px"},display:{xs:"none",sm:"block"}}}  gutterBottom>
           or create an account if not registred yet
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }}>
@@ -154,21 +154,19 @@ export default function Login() {
             component={ log === true ? NavLink : Button } 
             to="/home"
             variant="contained"
-            color="secondary"
             onClick={handleClick(TransitionRight)}
             sx={{ mt: 3, mb: 2 }}
           >
             lOG IN  
           </Button>
-        <Snackbar   open={snackbarShow}  TransitionComponent={transition} autoHideDuration={6000}  key={transition ? transition.name : ""} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          This is a success message!
+        <Snackbar   open={snackbarShow}  TransitionComponent={transition} autoHideDuration={3000}  key={transition ? transition.name : ""} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+         Login Credentials cann't be empty
         </Alert>
       </Snackbar>
-
           <Box
             sx={{
-              display: "flex",
+              display:{sm:"flex"},
               alignItems: "center",
               justifyContent: "center",
               gap: "2px",

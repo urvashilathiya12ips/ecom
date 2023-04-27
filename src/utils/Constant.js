@@ -41,14 +41,33 @@ const icon = [
 ];
 
 const iconSidebar2 = [
-  { id: 0, label: "Best Seller", image: SIDEBARICONS.NavbarIcon9 },
-  { id: 1, label: "New Relese", image: SIDEBARICONS.NavbarIcon10 },
-  { id: 1, label: "Offers", image: SIDEBARICONS.NavbarIcon11 },
+  {
+    id: 0,
+    label: "Best Seller",
+    to: "/bestseller",
+    image: SIDEBARICONS.NavbarIcon9,
+  },
+  {
+    id: 1,
+    label: "New Relese",
+    image: SIDEBARICONS.NavbarIcon10,
+  },
+  { id: 1, label: "Offers", to: "/offer", image: SIDEBARICONS.NavbarIcon11 },
 ];
 
 const iconSidebar = [
-  { id: 0, label: "Cutomer Care", image: SIDEBARICONS.NavbarIcon7 },
-  { id: 1, label: "Profile", image: SIDEBARICONS.NavbarIcon8 },
+  {
+    id: 0,
+    label: "Cutomer Care",
+    to: "/Customer",
+    image: SIDEBARICONS.NavbarIcon7,
+  },
+  {
+    id: 1,
+    label: "Profile",
+    to: "/Userprofile",
+    image: SIDEBARICONS.NavbarIcon8,
+  },
 ];
 const HomeSliderImages = [
   { id: 0, image: HOMEPAGEIMAGE.HomePageSlider1 },
@@ -59,13 +78,48 @@ const HomeSliderImages = [
   { id: 0, image: HOMEPAGEIMAGE.HomePageSlider6 },
 ];
 const CardDataHome = [
-  { id: 0, label: "Womans Wear", image: HOMEPAGEIMAGE.DealOfDayPage1 },
-  { id: 2, label: "Mens wear", image: HOMEPAGEIMAGE.DealOfDayPage2 },
-  { id: 3, label: "Western wear", image: HOMEPAGEIMAGE.DealOfDayPage3 },
-  { id: 4, label: "Footware ", image: HOMEPAGEIMAGE.DealOfDayPage4 },
-  { id: 4, label: "Cosmatics", image: HOMEPAGEIMAGE.DealOfDayPage5 },
-  { id: 2, label: "Mens wear", image: HOMEPAGEIMAGE.DealOfDayPage2 },
-  { id: 2, label: "Kids wear", image: HOMEPAGEIMAGE.DealOfDayPage6 },
+  {
+    id: 0,
+    label: "Womans Wear",
+    image: HOMEPAGEIMAGE.DealOfDayPage1,
+    price: 1005,
+  },
+  {
+    id: 2,
+    label: "Mens wear",
+    image: HOMEPAGEIMAGE.DealOfDayPage2,
+    price: 1005,
+  },
+  {
+    id: 3,
+    label: "Western wear",
+    image: HOMEPAGEIMAGE.DealOfDayPage3,
+    price: 1005,
+  },
+  {
+    id: 4,
+    label: "Footware ",
+    image: HOMEPAGEIMAGE.DealOfDayPage4,
+    price: 1005,
+  },
+  {
+    id: 4,
+    label: "Cosmatics",
+    image: HOMEPAGEIMAGE.DealOfDayPage5,
+    price: 1005,
+  },
+  {
+    id: 2,
+    label: "Mens wear",
+    image: HOMEPAGEIMAGE.DealOfDayPage2,
+    price: 1005,
+  },
+  {
+    id: 2,
+    label: "Kids wear",
+    image: HOMEPAGEIMAGE.DealOfDayPage6,
+    price: 1005,
+  },
 ];
 
 const ProductListData = [
@@ -75,6 +129,8 @@ const ProductListData = [
     image: ProductListImage.Womenwear1,
     price: 1200,
     size: "M",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 1,
@@ -82,6 +138,8 @@ const ProductListData = [
     image: ProductListImage.Womenwear2,
     price: 1060,
     size: "L",
+    status: "false",
+    ProductOffer: "offer",
   },
   {
     id: 2,
@@ -89,6 +147,8 @@ const ProductListData = [
     image: ProductListImage.Womenwear3,
     price: 1500,
     size: "XL",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 3,
@@ -96,6 +156,8 @@ const ProductListData = [
     image: ProductListImage.Womenwear4,
     price: 1500,
     size: "XS",
+    status: "false",
+    ProductOffer: "offer",
   },
   {
     id: 4,
@@ -103,6 +165,8 @@ const ProductListData = [
     image: ProductListImage.menswear1,
     price: 1050,
     size: "S",
+    status: "false",
+    ProductOffer: "offer",
   },
   {
     id: 5,
@@ -110,6 +174,8 @@ const ProductListData = [
     image: ProductListImage.menswear2,
     price: 1050,
     size: "XLL",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 6,
@@ -117,6 +183,7 @@ const ProductListData = [
     image: ProductListImage.menswear3,
     price: 1050,
     size: "M",
+    status: "false",
   },
   {
     id: 7,
@@ -124,6 +191,8 @@ const ProductListData = [
     image: ProductListImage.menswear4,
     price: 1050,
     size: "S",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 8,
@@ -131,6 +200,7 @@ const ProductListData = [
     image: ProductListImage.kidswear1,
     price: 900,
     size: "1-3 YEAR",
+    status: "false",
   },
   {
     id: 9,
@@ -138,6 +208,8 @@ const ProductListData = [
     image: ProductListImage.kidswear2,
     price: 900,
     size: "3-9 YEAR",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 10,
@@ -145,6 +217,7 @@ const ProductListData = [
     image: ProductListImage.kidswear3,
     price: 900,
     size: "1-4 YEAR",
+    status: "false",
   },
   {
     id: 11,
@@ -152,6 +225,8 @@ const ProductListData = [
     image: ProductListImage.kidswear4,
     price: 900,
     size: "10-12 YEAR",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 12,
@@ -159,6 +234,8 @@ const ProductListData = [
     image: ProductListImage.footwear1,
     price: 999,
     size: "7",
+    status: "true",
+    ProductOffer: "bestseller",
   },
   {
     id: 12,
@@ -166,6 +243,7 @@ const ProductListData = [
     image: ProductListImage.footwear2,
     price: 999,
     size: "5",
+    status: "false",
   },
   {
     id: 12,
@@ -173,6 +251,8 @@ const ProductListData = [
     image: ProductListImage.footwear3,
     price: 999,
     size: "6",
+    status: "true",
+    ProductOffer: "bestseller",
   },
   {
     id: 12,
@@ -180,54 +260,69 @@ const ProductListData = [
     image: ProductListImage.footwear4,
     price: 999,
     size: "9",
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 13,
     label: "Jewelary",
     image: ProductListImage.cosmatics1,
     price: 2009,
+    status: "false",
   },
   {
     id: 14,
     label: "Jewelary",
     image: ProductListImage.cosmatics2,
     price: 2009,
+    status: "true",
+    ProductOffer: "bestseller",
   },
   {
     id: 15,
     label: "Jewelary",
     image: ProductListImage.cosmatics3,
     price: 2009,
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 16,
     label: "Jewelary",
     image: ProductListImage.cosmatics4,
     price: 2009,
+    status: "false",
+    ProductOffer: "bestseller",
   },
   {
     id: 17,
     label: "HomeAppliance",
     image: ProductListImage.Homeappliance1,
     price: 2009,
+    status: "true",
   },
   {
     id: 17,
     label: "HomeAppliance",
     image: ProductListImage.Homeappliance2,
     price: 2009,
+    status: "false",
+    ProductOffer: "offer",
   },
   {
     id: 17,
     label: "HomeAppliance",
     image: ProductListImage.Homeappliance3,
     price: 2009,
+    status: "false",
   },
   {
     id: 17,
     label: "HomeAppliance",
     image: ProductListImage.Homeappliance4,
     price: 2009,
+    status: "true",
+    ProductOffer: "offer",
   },
 ];
 

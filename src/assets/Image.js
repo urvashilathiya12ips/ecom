@@ -45,6 +45,7 @@ import cosmatics1 from "./Images/cosmatics1.avif";
 import cosmatics2 from "./Images/cosmatics2.avif";
 import cosmatics3 from "./Images/cosmatics3.avif";
 import cosmatics4 from "./Images/cosmatics4.avif";
+import CustomerCarePage from "./Images/CustomerCarePage1.avif";
 
 const SIDEBARICONS = {
   NavbarIcon1: icon1,
@@ -93,9 +94,13 @@ const ProductListImage = {
   footwear3,
   footwear4,
   Homeappliance1,
-  Homeappliance2,Homeappliance3,
-  Homeappliance4,cosmatics1,cosmatics2,cosmatics3,cosmatics4
-
+  Homeappliance2,
+  Homeappliance3,
+  Homeappliance4,
+  cosmatics1,
+  cosmatics2,
+  cosmatics3,
+  cosmatics4,
 };
 
-export { SIDEBARICONS, HOMEPAGEIMAGE, ProductListImage };
+export { SIDEBARICONS, HOMEPAGEIMAGE, ProductListImage, CustomerCarePage };

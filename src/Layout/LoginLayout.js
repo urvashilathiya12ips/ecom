@@ -1,7 +1,7 @@
 import { Box, Card, CardMedia, Container } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
-import loginBg from "../assets/Images/loginPage.svg";
+import loginBg from "../assets/Images/loginpage.avif";
 
 export default function LaginLayout() {
   return (

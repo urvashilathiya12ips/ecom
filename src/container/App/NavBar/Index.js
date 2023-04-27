@@ -1,4 +1,10 @@
-import { icon, iconSidebar, iconSidebar2 } from "../../../utils/Constant";
+import {
+  icon,
+  iconSidebar,
+  iconSidebar2,
+  drawerWidth,
+  ProductListData,
+} from "../../../utils/Constant";
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import * as React from "react";
 import PropTypes from "prop-types";
@@ -15,11 +21,21 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import { Avatar, Badge, InputBase, alpha } from "@mui/material";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import {
+  Avatar,
+  Badge,
+  Grid,
+  Input,
+  InputBase,
+  Paper,
+  alpha,
+} from "@mui/material";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
 import { NavLink } from "react-router-dom";
 import logo from "../../../assets/Images/applogo2-removebg-preview.png";
+import { UserContext } from "../../../App";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,12 +78,42 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-
-const drawerWidth = 240;
-
+const Item = styled(Paper)(({ theme }) => ({
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 function ResponsiveDrawer(props) {
+  const { log, setlog } = React.useContext(UserContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [state, setState] = React.useState({
+    right: false,
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{
+        width:
+          anchor === "top" || anchor === "bottom"
+            ? "auto"
+            : { xs: 250, sm: 350 },
+      }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    ></Box>
+  );
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -99,7 +145,7 @@ function ResponsiveDrawer(props) {
       <List>
         {iconSidebar2.map((text, index) => (
           <ListItem key={text.label} disablePadding>
-            <ListItemButton>
+            <ListItemButton components={NavLink} to={text.to}>
               <ListItemIcon>
                 <Avatar src={text.image} />
               </ListItemIcon>
@@ -112,7 +158,7 @@ function ResponsiveDrawer(props) {
       <List>
         {iconSidebar.map((text, index) => (
           <ListItem key={text.label} disablePadding>
-            <ListItemButton>
+            <ListItemButton components={NavLink} to={text.to}>
               <ListItemIcon>
                 <Avatar src={text.image} />
               </ListItemIcon>
@@ -164,17 +210,24 @@ function ResponsiveDrawer(props) {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
+                components={Input}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
             </Search>
+
             <Badge
               badgeContent={4}
               color="error"
-              sx={{ justifyContent: "flex-end" }}
+              sx={{ justifyContent: "flex-end", color: "#ffffff" }}
+              component={NavLink}
+              to="/AddToCart"
             >
               <ShoppingCartRoundedIcon />
             </Badge>
+            <Box component={NavLink} to="/" sx={{ color: "#ffffff" }}>
+              <ExitToAppIcon sx={{ fontSize: "30px" }} />
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
