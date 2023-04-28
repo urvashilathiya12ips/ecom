@@ -57,7 +57,7 @@ function Home() {
           sx={{ justifyContent: "center" }}
           steps={maxSteps}
           position="static"
-          activeStep={0}
+          activeStep={activeStep}
         />
       </Box>
       <Box>

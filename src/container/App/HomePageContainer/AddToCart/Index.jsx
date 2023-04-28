@@ -16,6 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
+    
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -56,11 +57,11 @@ const rows = [
 
 export default function CustomizedTables() {
   return (
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
     <Toolbar />
     <Typography sx={{fontSize:{sm:"15px",md:"25px",},paddingBottom:"10px"}}>ADD CART</Typography>
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table sx={{ minWidth: 500 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Id</StyledTableCell>

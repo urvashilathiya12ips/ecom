@@ -18,7 +18,7 @@ export default function CategarySidebar({type}) {
   return (
     <>
     <DropdownSortBy />
-    <Box sx={{ }}>
+    <Box sx={{height:"650px" }}>
       <Grid container justifyContent="space-around"  spacing={{ xs: 2, md: 4 }}>
         {ProductListData.filter(item => item.label  === type).map((items, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3}  key={index}>

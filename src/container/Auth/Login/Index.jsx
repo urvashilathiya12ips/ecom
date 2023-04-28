@@ -43,8 +43,8 @@ export default function Login() {
   });
   const [snackbarShow, setsnackbarShow] = React.useState(false);
   const [transition, setTransition] = React.useState(undefined);
-
-  const handleClick = (Transition) => () => {
+  
+  const handleClick = (Transition) => () => { 
     setTransition(() => Transition);
       setsnackbarShow(true);
    
@@ -109,6 +109,7 @@ export default function Login() {
             required
             fullWidth
             id="email"
+            helperText={Error.emailError === true ? "Email contain @" : ""}
             label="Email Address"
             name="email"
             value={loginData.email}
@@ -116,14 +117,15 @@ export default function Login() {
             autoFocus
             onChange={handleLogin}
           />
-          <FormControl sx={{ mt: 2 }} variant="outlined" fullWidth>
-            <InputLabel htmlFor="outlined-adornment-password">
+          <FormControl sx={{ mt: 2 }} variant="outlined" fullWidth >
+            <InputLabel  htmlFor="outlined-adornment-password" >
               Password
             </InputLabel>
             <OutlinedInput
               name="password"
               error={Error.passwordError}
               onChange={handleLogin}
+              // helperText={Error.passwordError === true ? "password shold be 8 charachter long" : ""}
               id="outlined-adornment-password"
               type={showPassword ? "text" : "password"}
               endAdornment={

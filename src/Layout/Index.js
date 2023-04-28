@@ -5,11 +5,11 @@ import { theme } from "../utils/theme/Index";
 import ResponsiveDrawer from "../container/App/NavBar/Index";
 import { Box, Toolbar, Typography } from "@mui/material";
 import { drawerWidth } from "../utils/Constant";
-import Footer from "../container/App/Footer/Index";
 import { useLocation } from "react-router-dom/dist";
 
 export default function MainLayout() {
   const location = useLocation();
+  const [path, setpath] = useState();
 
   // useEffect(() => {
 
@@ -17,7 +17,7 @@ export default function MainLayout() {
   //   console.log(url);
   // }, [url]);
   useEffect(() => {
-    console.log(location);
+    setpath(location.pathname);
   }, [location]);
   return (
     <>
@@ -33,10 +33,10 @@ export default function MainLayout() {
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
-          {location === "/home" ? (
+          {path === "/home" ? (
             " "
           ) : (
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", textAlign: "start" }}>
               <Typography
                 variant="body1"
                 gutterBottom
@@ -46,7 +46,7 @@ export default function MainLayout() {
                 Home
               </Typography>
               <Typography variant="body1" gutterBottom>
-                {/* {`${url}`} */}
+                {`${path}`}
               </Typography>
             </Box>
           )}

@@ -7,8 +7,10 @@ import "swiper/css/pagination";
 import { CardDataHome } from "../../../../utils/Constant";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../../../utils/theme/Index";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePageCon1() {
+  const navigate = useNavigate();
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -26,7 +28,7 @@ export default function HomePageCon1() {
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             {CardDataHome.map((page, index) => (
               <Box sx={{ display: { xs: "none", xl: "block" } }}>
-                <Card>
+                <Card onClick={() => navigate(page.to)}>
                   <CardMedia
                     component="img"
                     alt="green iguana"

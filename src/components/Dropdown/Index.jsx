@@ -3,8 +3,8 @@ import React from 'react'
 
 const DropdownItemList = [
     {
-      value: "recommendation",
-      label: "recommendation",
+      value: "Recommendation",
+      label: "Recommendation",
     },
     {
       value: "Price:Low-High",
@@ -20,7 +20,7 @@ const DropdownItemList = [
     },
     {
       value: "Whats New",
-      label: "popularity",
+      label: "Whats New",
     },
   ];
 
@@ -39,9 +39,10 @@ export default function DropdownSortBy() {
               paddingBottom:3,
             }}
             noValidate
+            defaultValue="select"
             autoComplete="off"
           >
-            <TextField id="outlined-select-currency" fullWidth select>
+            <TextField id="outlined-select-currency"  fullWidth select defaultValue="Whats New">
               {DropdownItemList.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}

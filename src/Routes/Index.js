@@ -10,6 +10,7 @@ import Customer from "../container/App/HomePageContainer/CustomerCare/Index";
 import Userprofile from "../container/App/HomePageContainer/UserProfile/Index";
 import CategarySidebar2 from "../container/App/HomePageContainer/CategraySidebar2/Index";
 import AddTOCArt from "../container/App/HomePageContainer/AddToCart/Index";
+import Error from "../container/App/HomePageContainer/Error/Index";
 
 export default function Links() {
   return (
@@ -55,6 +56,7 @@ export default function Links() {
           <Route path="/Userprofile" element={<Userprofile />} />
           <Route path="/Customer" element={<Customer />} />
         </Route>
+        <Route path="*" element={<Error />}></Route>
       </Routes>
     </>
   );

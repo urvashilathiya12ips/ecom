@@ -182,12 +182,11 @@ function ResponsiveDrawer(props) {
               badgeContent={4}
               color="error"
               sx={{ justifyContent: "flex-end", color: "#ffffff" }}
-              component={Link}
-              to="/AddToCart"
+              onClick={() => navigate("/AddToCart")}
             >
               <ShoppingCartRoundedIcon />
             </Badge>
-            <Box component={Link} to="/" sx={{ color: "#ffffff" }}>
+            <Box onClick={() => navigate("/")} sx={{ color: "#ffffff" }}>
               <ExitToAppIcon sx={{ fontSize: "30px" }} />
             </Box>
           </Box>
