@@ -4,13 +4,14 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import * as React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { theme } from "../../../utils/theme/Index";
 import Snackbar from "@mui/material/Snackbar";
 import { isValidEmail, isValidPassword,TransitionRight } from "../../../utils/helper";
 import {
   Box,
   FormControl,
+  FormHelperText,
   IconButton,
   InputAdornment,
   InputLabel,
@@ -22,6 +23,8 @@ import {
 } from "@mui/material";
 import MuiAlert from '@mui/material/Alert';
 import { UserContext } from "../../../App";
+import { api } from "../../../Api/Index";
+import SnackBar from "../../../components/Snackbar/Index";
 
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -31,8 +34,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 
 export default function Login() {
-  const { log,setlog } =React.useContext(UserContext);
-  const [showPassword, setShowPassword] = React.useState(false);
+  const navigate = useNavigate();
+  const [log, setlog] = useState(false); 
+  const [SnackBarMsg,setSnackBarMsg]= React.useState("");
+   const [showPassword, setShowPassword] = React.useState(true);
   const [Error, setError] = React.useState({
       emailError:false,
       passwordError:false,
@@ -65,6 +70,7 @@ export default function Login() {
     else if (loginData.email === "") {
       Error.emailError=true
       setError({...Error});
+ 
     }
     else{
       Error.emailError=false
@@ -77,18 +83,36 @@ export default function Login() {
     }
     else {
       Error.passwordError=false
-      setError({...Error});
-      setlog(true);
+      setError({...Error})
     }
-
   }
+
+  React.useEffect(()=>{
+      console.log(log)
+  },[log])
+
+  const handleData =async()=>{
+    const {data}= await api.auth.login(loginData);
+    if(data === "Email Does not exist")
+    {
+      setsnackbarShow(true)
+      setSnackBarMsg("Email Does not exist")
+    }
+    if(data.Password === "password was incorect")
+    {
+      setsnackbarShow(true)
+      setSnackBarMsg("Password was Invalid")
+    }
+    if(data.msg === "login successful")
+    {
+      localStorage.setItem("Token",data.token);
+      setlog(true);  
+      navigate("/home")
+      
+    }
  
-  
-
-  // useEffect(()=>{   
-  //   localStorage.setItem("logdata",JSON.stringify(logdata))   
-  //  },[loginData]); 
-
+}
+ 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -125,9 +149,9 @@ export default function Login() {
               name="password"
               error={Error.passwordError}
               onChange={handleLogin}
-              // helperText={Error.passwordError === true ? "password shold be 8 charachter long" : ""}
+               helperText={Error.passwordError === true ? "password shold be 8 charachter long" : ""}
               id="outlined-adornment-password"
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? "password" : "text"}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
@@ -143,6 +167,9 @@ export default function Login() {
               label="Password"
             />
           </FormControl>
+          { 
+            Error.passwordError === true ? <FormHelperText sx={{color:"#D10000"}}>Password shold be 8 character Long</FormHelperText> : ""
+          }
 
           <Box sx={{ textAlign: "end", mt: 2 }}>
             <NavLink to="/Forgot" variant="body2">
@@ -150,22 +177,16 @@ export default function Login() {
             </NavLink>
           </Box>
 
-          <Button
-            type="submit"
+          <Button 
             fullWidth
-            component={ log === true ? NavLink : Button } 
-            to="/home"
             variant="contained"
-            onClick={handleClick(TransitionRight)}
+            onClick={()=>{handleClick(TransitionRight); handleData()}}
             sx={{ mt: 3, mb: 2 }}
           >
             lOG IN  
           </Button>
-        <Snackbar   open={snackbarShow}  TransitionComponent={transition} autoHideDuration={3000}  key={transition ? transition.name : ""} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-         Login Credentials cann't be empty
-        </Alert>
-      </Snackbar>
+          <SnackBar open={snackbarShow} transition={transition} handleClose={handleClose} type="error" msg={SnackBarMsg} />
+
           <Box
             sx={{
               display:{sm:"flex"},

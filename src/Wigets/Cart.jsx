@@ -18,13 +18,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import { ProductListData } from "../utils/Constant";
+import { api } from "../Api/Index";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 
-export default function Cart({image,label,price,size,id}) {
+export default function Cart({image,price,size,id,Name}) {
   const [flag, setFlag] = React.useState(false);
   const [Dailogopen, setDailogopen] = React.useState(false);
 
@@ -38,25 +40,16 @@ export default function Cart({image,label,price,size,id}) {
 
   
 
-  const handleClick = (id) => {
-    setFlag(!flag);
-    // ProductListData.map((product,index)=>{
-    //   console.log(id)
-    //   if(product.id === id){
-    //     setAddCart([...addCart,product]);
-    //   }
-    // })
-    // console.log(addCart)
+  const handleClick = async (id) => {
+    const { data } = await api.product.ProductCart(id);
+    console.log(data)
+     setFlag(!flag);
+    
   };
 
   const Remove = (data) => {
     setFlag(!flag)
-    // var Deleteitem =addCart.filter((item) => {
-    //   return item.id !== data.id;
-    // });
-    // setAddCart(Deleteitem);
-    // console.log(addCart)
-   
+    
   };
 
   // const Item = styled(Paper)(({ theme }) => ({
@@ -91,7 +84,7 @@ export default function Cart({image,label,price,size,id}) {
                 }}
                 component="div"
               >
-                {label}
+                {Name}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                RS: {price}
@@ -113,7 +106,7 @@ export default function Cart({image,label,price,size,id}) {
                 <Button
                   fullWidth
                   variant="contained"
-                  onClick={()=>handleClick(id)}
+                  onClick={()=>{handleClick(id);}}
                   size="large"
                   startIcon={ <ShoppingCartIcon/>}
                 >
@@ -154,7 +147,7 @@ export default function Cart({image,label,price,size,id}) {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle><Avatar variant="square" sx={{width:{xs:"200px",sm:"300px",lg:"400px"},height:{xs:"200px",sm:"300px",lg:"400px"}}} src={image}></Avatar></DialogTitle>
-        <DialogTitle>{label}</DialogTitle>
+        <DialogTitle>{Name}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
           <Typography color="primary" variant="subtitle1">

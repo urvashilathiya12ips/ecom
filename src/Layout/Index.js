@@ -6,19 +6,19 @@ import ResponsiveDrawer from "../container/App/NavBar/Index";
 import { Box, Toolbar, Typography } from "@mui/material";
 import { drawerWidth } from "../utils/Constant";
 import { useLocation } from "react-router-dom/dist";
+import { UserContext } from "../App";
 
 export default function MainLayout() {
   const location = useLocation();
+  const { inputRef } = React.useContext(UserContext);
+
   const [path, setpath] = useState();
 
-  // useEffect(() => {
-
-  //   SetUrl(window.location.pathname);
-  //   console.log(url);
-  // }, [url]);
   useEffect(() => {
     setpath(location.pathname);
   }, [location]);
+
+ 
   return (
     <>
       <ThemeProvider theme={theme}>

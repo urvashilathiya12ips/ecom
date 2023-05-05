@@ -25,11 +25,11 @@ export default function Links() {
           <Route path="/home" element={<Home />} />
           <Route
             path="/mensColths"
-            element={<CategarySidebar type="Mens wear" />}
+            element={<CategarySidebar type="Menswear" />}
           />
           <Route
             path="/womenColths"
-            element={<CategarySidebar type="Womens Wear" />}
+            element={<CategarySidebar type="WomansWear" />}
           />
           <Route
             path="/footwear"
@@ -37,7 +37,7 @@ export default function Links() {
           />
           <Route
             path="/Kidswear"
-            element={<CategarySidebar type="Kids wear" />}
+            element={<CategarySidebar type="Kidswear" />}
           />
           <Route
             path="/HomeAppliance"

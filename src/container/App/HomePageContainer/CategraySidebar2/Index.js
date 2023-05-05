@@ -4,8 +4,9 @@ import * as React from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Cart from "../../../../Wigets/Cart";
-import { ProductListData } from "../../../../utils/Constant";
 import DropdownSortBy from "../../../../components/Dropdown/Index";
+import { UserContext } from "../../../../App";
+import { api } from "../../../../Api/Index";
 
 const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
@@ -13,13 +14,16 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function CategarySidebar2({ type }) {
-  // const [product, setProduct] = React.useState([]);
+  const { categoryData, setcategoryData } = React.useContext(UserContext);
 
-  // React.useEffect(() => {
-  //   setProduct(ProductListData);
-  //   localStorage.setItem("Products", JSON.stringify(product));
-  // });
-
+  const getCategory = async () => {
+    const { data } = await api.Setcategary.get(type);
+    console.log(data);
+    setcategoryData(data);
+  };
+  React.useEffect(() => {
+    getCategory();
+  }, [type]);
   return (
     <>
       <DropdownSortBy />
@@ -29,20 +33,20 @@ export default function CategarySidebar2({ type }) {
           justifyContent="space-around"
           spacing={{ xs: 2, md: 4 }}
         >
-          {ProductListData.filter((item) => item.ProductOffer === type).map(
-            (items, index) => (
+          {categoryData
+            .filter((item) => item.productOffer === type)
+            .map((items, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                 <Item>
                   <Cart
-                    label={items.label}
-                    price={items.price}
-                    image={items.image}
-                    size={items.size}
+                    Name={items.productName}
+                    price={items.productPrice}
+                    image={items.productImage}
+                    size={items.productSize}
                   />
                 </Item>
               </Grid>
-            )
-          )}
+            ))}
         </Grid>
       </Box>
     </>

@@ -1,40 +1,40 @@
 import React from "react";
 import { Avatar, Box, Paper, Typography } from "@mui/material";
-import { ProductListData } from "../../../../utils/Constant";
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "../../../../utils/theme/Index";
-import styled from "@emotion/styled";
-import { CustomizeAvtar } from "../../../../components/CustomiseBox/Index";
 import { useNavigate } from "react-router-dom";
+import { CustomiseHover } from "../../../../components/Customise/Index";
+import { UserContext } from "../../../../App";
 
 export default function CategoryToBag() {
+  const { product } = React.useContext(UserContext);
+
   const navigate = useNavigate();
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Paper sx={{ position: "relative" }}>
-          <Box>
-            <Typography
-              sx={{
-                fontSize: { xs: "20px", sm: "20px", md: "30px", xl: "50px" },
-              }}
-              paddingTop="30px"
-              color="primary"
-            >
-              CATEGORIES TO BAG
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-
-                justifyContent: "space-evenly",
-                alignContent: "center",
-                backgroundColor: "#F1F1F1",
-                flexWrap: "wrap",
-              }}
-            >
-              {ProductListData.map((Products, index) => (
+        <Box>
+          <Typography
+            sx={{
+              fontSize: { xs: "20px", sm: "20px", md: "30px", xl: "50px" },
+            }}
+            paddingTop="30px"
+            color="primary"
+          >
+            CATEGORIES TO BAG
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              alignContent: "center",
+              backgroundColor: "#F1F1F1",
+              flexWrap: "wrap",
+            }}
+          >
+            {product.map((Products, index) => (
+              <>
                 <Box>
                   <Box
                     sx={{
@@ -42,28 +42,34 @@ export default function CategoryToBag() {
                       borderRadius: "5px",
                     }}
                   >
-                    <Avatar
-                      onClick={() => navigate(Products.to)}
-                      alt="Remy Sharp"
-                      src={Products.image}
-                      sx={{
-                        width: {
-                          xs: "130px",
-                          sm: "150px",
-                          md: "170px",
-                          lg: "190px",
-                          xl: "210px",
-                        },
-                        height: {
-                          xs: "130px",
-                          sm: "150px",
-                          md: "170px",
-                          lg: "190px",
-                          xl: "210px",
-                        },
-                      }}
-                    />
-
+                    <Box sx={{ position: "relative" }}>
+                      <Avatar
+                        onClick={() => navigate(Products.to)}
+                        alt="Remy Sharp"
+                        src={Products.productImage}
+                        sx={{
+                          width: {
+                            xs: "130px",
+                            sm: "150px",
+                            md: "170px",
+                            lg: "190px",
+                            xl: "210px",
+                          },
+                          height: {
+                            xs: "130px",
+                            sm: "150px",
+                            md: "170px",
+                            lg: "190px",
+                            xl: "210px",
+                          },
+                        }}
+                      />
+                      <CustomiseHover>
+                        <Typography sx={{ display: "none" }}>
+                          Click ME
+                        </Typography>
+                      </CustomiseHover>
+                    </Box>
                     <Typography
                       textAlign="center"
                       color="primary"
@@ -76,14 +82,14 @@ export default function CategoryToBag() {
                         },
                       }}
                     >
-                      {Products.label}
+                      {Products.productLabel}
                     </Typography>
                   </Box>
                 </Box>
-              ))}
-            </Box>
+              </>
+            ))}
           </Box>
-        </Paper>
+        </Box>
       </ThemeProvider>
     </>
   );

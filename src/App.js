@@ -1,24 +1,48 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import "./App.css";
 import Links from "./Routes/Index";
-import { ProductListData } from "./utils/Constant";
+import { api } from "./Api/Index";
 
 export const UserContext = createContext("");
 function App() {
+  const inputRef = React.useRef(null);
   const [open, setOpen] = React.useState(false);
-  const [find, setFind] = React.useState("");
-  const [log, setlog] = useState(false);
-
-  const handleInput = (event) => {
-    setFind(event.target.value);
+  const [product, setProduct] = React.useState([]);
+  const [category, setCategory] = React.useState([]);
+  const [categoryData, setcategoryData] = React.useState([]);
+  const [FindProduct, setfindProduct] = useState();
+  const getProductData = async () => {
+    const Data = await api.product.get();
+    setProduct(Data.data);
   };
-  const serchdata = ProductListData.filter((data) =>
-    data.title?.toLowerCase().includes(find?.toLowerCase())
-  );
+
+  useEffect(() => {
+    getProductData();
+  }, []);
+
+  const handleInput = async (event) => {
+    setfindProduct(event.target.value);
+    const Serch = await api.search.get(event.target.value);
+    setCategory(Serch.data);
+    setcategoryData(Serch.data);
+  };
+
   return (
     <>
       <UserContext.Provider
-        value={{ open, setOpen, serchdata, find, handleInput, log, setlog }}
+        value={{
+          open,
+          setOpen,
+          setfindProduct,
+          product,
+          handleInput,
+          FindProduct,
+          setProduct,
+          categoryData,
+          setcategoryData,
+          category,
+          setCategory,
+        }}
       >
         <Links />
       </UserContext.Provider>

@@ -7,10 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import{ ProductListImage} from "../../../../assets/Image"
-import { Avatar, Toolbar, Typography } from '@mui/material';
+import { Avatar, Box, Toolbar, Typography } from '@mui/material';
+import { IndexNumber } from "../../../../utils/Constant"
 import { ThemeProvider } from '@emotion/react';
 import { theme } from '../../../../utils/theme/Index';
+import { getdata } from '../../../../Helper/Index';
+import { api } from '../../../../Api/Index';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,49 +43,65 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     fontSize:"16px",
   }
 }));
-
-
-
-function createData(Id, Image, Label, Price,size,color) {
-  return { Id, Image, Label, Price,size,color };
-}
-
-const rows = [
-  createData(1,ProductListImage.menswear1, "menswear","RS 2000","size: M","Color: Black"),
-  createData(2,ProductListImage.Womenwear1, "Womanswear","RS 2050","size: S","Color: Gray"),
-  createData(3,ProductListImage.kidswear1, "kidsWear","RS 1900","size: XS","Color: WHite"),
-  createData(4,ProductListImage.Homeappliance1, "Homeappliance","RS 2500","size: XL","Color: Green"),
-];
-
+ 
 export default function CustomizedTables() {
+  const [Data,SetData]=React.useState([])
+
+  const getCartItem = async()=>{
+    const { data } = await api.product.CartItem();
+    SetData(data)
+  }
+  
+  React.useEffect(() => {
+    getCartItem();
+},[]);
+
   return (
     <ThemeProvider theme={theme}>
     <Toolbar />
     <Typography sx={{fontSize:{sm:"15px",md:"25px",},paddingBottom:"10px"}}>ADD CART</Typography>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Id</StyledTableCell>
-            <StyledTableCell >PRODUCT</StyledTableCell>
-            <StyledTableCell >PRODUCT NAME</StyledTableCell>
-            <StyledTableCell>PRICE</StyledTableCell>
-          </TableRow>
-        </TableHead>    
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.Id}>
-              <StyledTableCell component="th" scope="row">
-                {row.Id}
-              </StyledTableCell>
-              <StyledTableCell ><Avatar src={row.Image} sx={{width:"100px" ,height:"100px"}} variant="square" /></StyledTableCell>
-              <StyledTableCell ><h1>{row.Label}</h1><p>{row.size}<br />{row.color}</p></StyledTableCell>
-              <StyledTableCell><p>{row.Price}</p></StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <TableContainer  component={Paper}>
+        { 
+          Data.length === undefined ? 
+          <>
+          <Table >
+            <TableHead> <TableRow><StyledTableCell> 
+              <Typography sx={{fontSize:{xs:"10px",md:"30px"},textAlign:"center"}}>
+                  CART IS EMPTY
+              </Typography>
+            </StyledTableCell> </TableRow></TableHead>
+          </Table>
+          </>
+          : 
+           <Table  stickyHeader sx={{ minWidth: 500 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>Id</StyledTableCell>
+              <StyledTableCell >PRODUCT</StyledTableCell>
+              <StyledTableCell >PRODUCT NAME</StyledTableCell>
+              <StyledTableCell>PRICE</StyledTableCell>
+            </TableRow>
+          </TableHead>  
+          <TableBody id="tablebody">
+            {Data.map((row,index) => (
+              <StyledTableRow key={row.id}>
+                <StyledTableCell component="th" scope="row">
+                  {index+IndexNumber}
+                </StyledTableCell>
+                <StyledTableCell ><Avatar src={row.productImage} sx={{width:"100px" ,height:"100px"}} variant="square" /></StyledTableCell>
+                <StyledTableCell ><h1>{row.productName}</h1><p>{row.size}</p></StyledTableCell>
+                <StyledTableCell><p>{row.productPrice}</p></StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      
+            }
+       
+       </TableContainer>
+      
+      
+   
     </ThemeProvider>
   );
 }

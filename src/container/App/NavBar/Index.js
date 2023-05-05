@@ -21,11 +21,12 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import { Avatar, Badge, Input, InputBase, Link, alpha } from "@mui/material";
+import { Avatar, Badge, Input, InputBase, alpha } from "@mui/material";
 import styled from "@emotion/styled";
 import SearchIcon from "@mui/icons-material/Search";
 import logo from "../../../assets/Images/applogo2-removebg-preview.png";
-import { useNavigate } from "react-router-dom/dist";
+import { useLocation, useNavigate } from "react-router-dom/dist";
+import { UserContext } from "../../../App";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -76,6 +77,16 @@ function ResponsiveDrawer(props) {
   const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { handleInput, setfindProduct, FindProduct } =
+    React.useContext(UserContext);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname != "/") {
+      setfindProduct("");
+      console.log(FindProduct);
+    }
+  }, [location]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -173,6 +184,9 @@ function ResponsiveDrawer(props) {
               </SearchIconWrapper>
               <StyledInputBase
                 components={Input}
+                type="text"
+                value={FindProduct}
+                onChange={handleInput}
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
@@ -186,7 +200,13 @@ function ResponsiveDrawer(props) {
             >
               <ShoppingCartRoundedIcon />
             </Badge>
-            <Box onClick={() => navigate("/")} sx={{ color: "#ffffff" }}>
+            <Box
+              onClick={() => {
+                navigate("/");
+                localStorage.removeItem("Token");
+              }}
+              sx={{ color: "#ffffff" }}
+            >
               <ExitToAppIcon sx={{ fontSize: "30px" }} />
             </Box>
           </Box>

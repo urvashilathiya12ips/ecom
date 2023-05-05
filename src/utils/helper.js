@@ -11,7 +11,7 @@ const isValidPassword = (password) => {
   const numberRegex = /[0-9]/;
   const specialCharRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
 
-  if (password.length < 10) {
+  if (password.length < 8) {
     return false;
   }
   if (!uppercaseRegex.test(password)) {
@@ -21,6 +21,7 @@ const isValidPassword = (password) => {
   if (!numberRegex.test(password)) {
     return false;
   }
+
   if (!specialCharRegex.test(password)) {
     return false;
   }

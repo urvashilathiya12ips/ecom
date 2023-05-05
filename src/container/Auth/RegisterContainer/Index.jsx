@@ -8,41 +8,34 @@ import * as React from 'react';
 import { NavLink } from "react-router-dom";
 import { theme } from "../../../utils/theme/Index";
 import Snackbar from "@mui/material/Snackbar";
-import { isValidEmail, isValidPassword,TransitionRight } from "../../../utils/helper";
+import { isValidEmail,TransitionRight } from "../../../utils/helper";
 import {
   Box,
-  FormControl,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
   TextField,
   ThemeProvider,
   Typography,
 
 } from "@mui/material";
-import MuiAlert from '@mui/material/Alert';
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import { api } from "../../../Api/Index";
+import SnackBar from "../../../components/Snackbar/Index";
 
 
-export default function Login() {
+export default function Login(props) {
   const [Register,setRegister]=useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
   const [Error, setError] = React.useState({
       emailError:false,
       passwordError:false,
   });
-  const [loginData, setLogindata] = useState({
+  const [registerData, SetregisterData] = useState({
     email: "",
-    password: "",
+    firstName:""
   });
   const [snackbarShow, setsnackbarShow] = React.useState(false);
   const [transition, setTransition] = React.useState(undefined);
+  const [SnackBarMsg,setSnackBarMsg]= React.useState("");
 
-  const handleClick = (Transition) => () => {
+  const handleClick = (Transition) => {
     setTransition(() => Transition);
       setsnackbarShow(true);
    
@@ -55,32 +48,48 @@ export default function Login() {
 
   const handleLogin = (e) => {
     const { name, value } = e.target;
-    setLogindata({ ...loginData, [name]: value });
-    if (!isValidEmail(loginData.email)) {
+    SetregisterData({ ...registerData, [name]: value });
+    if (!isValidEmail(registerData.email)) {
       Error.emailError=true
       setError({...Error});
     }
-    else if (loginData.email === "") {
+    else if (registerData.email === "") {
       Error.emailError=true
-      setError({...Error});
+      setError({...Error});   
     }
     else{
       Error.emailError=false
       setError({...Error});
     }
-     if(!isValidPassword(loginData.password))
-    {
-      Error.passwordError=true
-      setError({...Error});
-    }
-    else {
-      Error.passwordError=false
-      setError({...Error});
-      setRegister(true);
-    }
-
   }
  
+const handleData =async()=>{
+  if(registerData.email || registerData.firstName == "" )
+  {
+    setsnackbarShow(true)
+    setSnackBarMsg("All filds are required")  
+  }
+   else if(registerData.email == "")
+    {
+      setsnackbarShow(true)
+      setSnackBarMsg("Email Can't be empty")  
+    }
+   
+    else{
+      setsnackbarShow(false)
+    }
+    const {data}= await api.auth.register(registerData);
+    if(data === " user already exits")
+    {
+      setRegister(false);
+      setsnackbarShow(true);
+      setSnackBarMsg("Email Alredy Exits")
+
+    }
+    else{
+      setRegister(true);
+    }
+}
   
 
   // useEffect(()=>{   
@@ -106,10 +115,12 @@ export default function Login() {
        margin="normal"
       required
        fullWidth
-      id="email"
+      id="firstName"
     label="Enter Name"
-      name="Name"
+    value={registerData.firstName}
+      name="firstName"
     autoComplete="off"
+    onChange={handleLogin}
       autoFocus
       
      /> 
@@ -122,12 +133,12 @@ export default function Login() {
             id="email"
             label="Email Address"
             name="email"
-            value={loginData.email}
+            value={registerData.email}
             autoComplete="off"
             autoFocus
             onChange={handleLogin}
           />
-          <FormControl sx={{ mt: 2 }} variant="outlined" fullWidth>
+          {/* <FormControl sx={{ mt: 2 }} variant="outlined" fullWidth>
             <InputLabel htmlFor="outlined-adornment-password">
               Password
             </InputLabel>
@@ -151,7 +162,8 @@ export default function Login() {
               }
               label="Password"
             />
-          </FormControl>
+          </FormControl> */}
+      
 </ Box>
          
 
@@ -159,18 +171,16 @@ export default function Login() {
             type="submit"
             fullWidth
             component={ Register === true ? NavLink : Button } 
-            to="/home"
+            to="/"
             variant="contained"
-            onClick={handleClick(TransitionRight)}
+            onClick={() =>{ handleClick(TransitionRight); handleData(); }}
             sx={{ mt: 3, mb: 2 }}
           >
             Register 
           </Button>
-        <Snackbar   open={snackbarShow}  TransitionComponent={transition} autoHideDuration={3000}  key={transition ? transition.name : ""} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-          Credentials cann't be empty
-        </Alert>
-      </Snackbar>
+          <SnackBar open={snackbarShow} transition={transition} handleClose={handleClose} type="error" msg={SnackBarMsg} />
+        
+       
          
         </Box>
       </ThemeProvider>
